@@ -1,4 +1,4 @@
-name: Deploy React App to EC2
+name: Deploy Pre-Built React App to EC2
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy on EC2
+    name: Deploy Build to EC2
     runs-on: ubuntu-latest
 
     steps:
@@ -20,8 +20,5 @@ jobs:
           script: |
             rm -rf sci-weather-app-frontend
             git clone https://github.com/Radhadalvi-pcccs-4259/sci-weather-app-frontend.git
-            cd sci-weather-app-frontend
-            npm install
-            npm run build
-            sudo cp -r build/* /usr/share/nginx/html/
+            sudo cp -r sci-weather-app-frontend/* /usr/share/nginx/html/
             sudo systemctl restart nginx
